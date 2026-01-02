@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haresh Chandrasekhar | Computational Combustion Research</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">HC</div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-label">PhD Candidate • Computational Combustion</div>
+            <h1 class="hero-title">
+                Haresh<br>
+                <span class="gradient-text">Chandrasekhar</span>
+            </h1>
+            <p class="hero-subtitle">
+                Advancing combustion modeling through hybrid machine learning,<br>
+                achieving <strong>99% memory reduction</strong> in flamelet tables
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Memory Reduction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7240×</div>
+                    <div class="stat-label">Compression Ratio</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#research" class="btn btn-primary">Explore Research</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- Featured Research: DNK Framework -->
+    <section id="research" class="section featured-research">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Featured Research</span>
+                <h2 class="section-title">Deep Neural Kernel Framework</h2>
+                <p class="section-subtitle">Revolutionary machine learning approach for turbulent combustion modeling</p>
+            </div>
+
+            <div class="project-showcase">
+                <div class="project-visual">
+                    <div class="image-container">
+                        <img src="memory_reduction_analysis.png" alt="99% Memory Reduction Achievement" class="project-image">
+                        <div class="image-badge">Published in Combustion & Flame</div>
+                    </div>
+                </div>
+
+                <div class="project-details">
+                    <h3>The Challenge</h3>
+                    <p class="detail-text">
+                        Traditional flamelet tables for turbulent combustion suffer from the <strong>curse of dimensionality</strong>. 
+                        Storage requirements scale exponentially with control variables, reaching <strong>7 GB</strong> for 4D tables, 
+                        making high-dimensional simulations infeasible.
+                    </p>
+
+                    <h3>The Innovation</h3>
+                    <div class="innovation-grid">
+                        <div class="innovation-card">
+                            <div class="innovation-icon">🧠</div>
+                            <h4>Deep Neural Kernel (DNK)</h4>
+                            <p>Hybrid approach combining neural networks with kernel regression for progress variable source terms</p>
+                        </div>
+                        <div class="innovation-card">
+                            <div class="innovation-icon">🎯</div>
+                            <h4>SOBC Clustering</h4>
+                            <p>Similarity-Ordinated Balanced Clustering groups correlated species for efficient training</p>
+                        </div>
+                        <div class="innovation-card">
+                            <div class="innovation-icon">⚡</div>
+                            <h4>Anchor Points</h4>
+                            <p>Strategic latent space anchors ensure stability during time integration</p>
+                        </div>
+                    </div>
+
+                    <h3>The Impact</h3>
+                    <div class="impact-metrics">
+                        <div class="metric-card">
+                            <div class="metric-value">7 GB → 800 KB</div>
+                            <div class="metric-label">Storage Reduction</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">99.99%</div>
+                            <div class="metric-label">Memory Saved</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">7240×</div>
+                            <div class="metric-label">Compression</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1.4%</div>
+                            <div class="metric-label">Ignition Delay Error</div>
+                        </div>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://doi.org/10.1016/j.combustflame.2025.114635" class="btn btn-primary" target="_blank">
+                            📄 Read Paper
+                        </a>
+                        <a href="#publications" class="btn btn-secondary">
+                            View All Publications
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Projects Grid -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Research Portfolio</span>
+                <h2 class="section-title">Key Projects</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: DNK Framework -->
+                <div class="project-card featured" data-category="machine-learning">
+                    <div class="project-image-wrapper">
+                        <img src="memory_reduction_analysis.png" alt="DNK Framework">
+                        <div class="project-overlay">
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Flamelet Modeling</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Deep Neural Kernel Flamelet Modeling</h3>
+                        <p>Hybrid ML framework combining neural networks with kernel regression, achieving 99% memory reduction in flamelet tables</p>
+                        <div class="project-highlights">
+                            <span class="highlight">7240× compression</span>
+                            <span class="highlight">ECN Spray A validated</span>
+                            <span class="highlight">Published C&F 2025</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('dnk')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Plasma-Assisted Combustion -->
+                <div class="project-card" data-category="experimental">
+                    <div class="project-image-wrapper">
+                        <div class="placeholder-image plasma-bg"></div>
+                        <div class="project-overlay">
+                            <span class="project-tag">Plasma</span>
+                            <span class="project-tag">Kinetics</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Plasma-Assisted Combustion Kinetics</h3>
+                        <p>Non-equilibrium plasma flow reactor studies of iso-octane oxidation and pyrolysis across 300K-1300K</p>
+                        <div class="project-highlights">
+                            <span class="highlight">Low-temperature chemistry</span>
+                            <span class="highlight">Nanosecond pulses</span>
+                            <span class="highlight">GC-MS Analysis</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('plasma')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Project 3: TLS Model -->
+                <div class="project-card" data-category="cfd">
+                    <div class="project-image-wrapper">
+                        <div class="placeholder-image tls-bg"></div>
+                        <div class="project-overlay">
+                            <span class="project-tag">CFD</span>
+                            <span class="project-tag">Turbulence</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Two-Level Simulation for Premixed Flames</h3>
+                        <p>Assessment of TLS model for capturing multi-scale turbulence-chemistry interactions in premixed combustion</p>
+                        <div class="project-highlights">
+                            <span class="highlight">Large/small scale decomposition</span>
+                            <span class="highlight">A priori analysis</span>
+                            <span class="highlight">Methane-air flames</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('tls')">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section publications-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Research Output</span>
+                <h2 class="section-title">Publications</h2>
+            </div>
+
+            <div class="publications-list">
+                <!-- Publication 1 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">Combustion and Flame, 2026</div>
+                        <h3 class="pub-title">A deep neural kernel approach with balanced clustering for flamelet modeling of spray flames</h3>
+                        <p class="pub-authors"><strong>Haresh Chandrasekhar</strong>, Opeoluwa Owoyele</p>
+                        <p class="pub-abstract">
+                            This study introduces a hybrid machine learning approach combining neural networks with kernel regression 
+                            to replace high-dimensional flamelet tables, achieving substantial memory reduction while maintaining accuracy 
+                            in ECN Spray A simulations across various ambient temperatures.
+                        </p>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.1016/j.combustflame.2025.114635" class="pub-link" target="_blank">
+                                <span class="link-icon">🔗</span> DOI
+                            </a>
+                            <span class="pub-metrics">
+                                <span class="metric-item">⭐ Featured Article</span>
+                                <span class="metric-item">📊 High Impact</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">12th U.S. National Combustion Meeting, 2021</div>
+                        <h3 class="pub-title">Non-Equilibrium Plasma Coupled Flow Reactor Studies of Plasma-Assisted Kinetics of Iso-Octane</h3>
+                        <p class="pub-authors"><strong>Haresh Chandrasekhar</strong>, Nicholas Tsolas</p>
+                        <p class="pub-abstract">
+                            Investigation of plasma-assisted pyrolysis and oxidation kinetics of iso-octane using a purpose-built plasma 
+                            flow reactor, demonstrating enhanced low-temperature reactivity and providing experimental database for 
+                            plasma-specific kinetic mechanism development.
+                        </p>
+                        <div class="pub-links">
+                            <span class="pub-metrics">
+                                <span class="metric-item">🔬 Experimental Study</span>
+                                <span class="metric-item">🌡️ 300K-1300K Range</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">AIAA Aviation Forum, 2020</div>
+                        <h3 class="pub-title">On the Assessment of Two-Level Simulation Model for Numerical Investigation of Turbulent Premixed Flames</h3>
+                        <p class="pub-authors"><strong>H. Chandrasekhar</strong>, R. Ranjan</p>
+                        <p class="pub-abstract">
+                            A priori assessment of the TLS model for turbulent premixed combustion, demonstrating the model's 
+                            capability to capture small-scale physics while reducing computational costs through simplified 
+                            one-dimensional SS equations.
+                        </p>
+                        <div class="pub-links">
+                            <span class="pub-metrics">
+                                <span class="metric-item">💨 Turbulent Combustion</span>
+                                <span class="metric-item">🔢 Multi-scale Modeling</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools -->
+    <section class="section skills-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Expertise</span>
+                <h2 class="section-title">Skills & Tools</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Deep Neural Networks</span>
+                        <span class="skill-tag">Kernel Methods</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">JAX</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Clustering Algorithms</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Computational Methods</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OpenFOAM</span>
+                        <span class="skill-tag">CONVERGE CFD</span>
+                        <span class="skill-tag">FlameMaster</span>
+                        <span class="skill-tag">RANS/LES</span>
+                        <span class="skill-tag">DNS</span>
+                        <span class="skill-tag">Flamelet Models</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">MPI/OpenMP</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">HPC</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Research Areas</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Turbulent Combustion</span>
+                        <span class="skill-tag">Chemical Kinetics</span>
+                        <span class="skill-tag">Plasma-Assisted Combustion</span>
+                        <span class="skill-tag">Spray Modeling</span>
+                        <span class="skill-tag">Data-Driven Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Haresh Chandrasekhar</h3>
+                    <p class="contact-position">PhD Candidate in Mechanical Engineering</p>
+                    <p class="contact-university">Louisiana State University</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:your.email@lsu.edu" class="contact-link">
+                            <span class="link-icon">📧</span>
+                            <span>your.email@lsu.edu</span>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+                            <span class="link-icon">💼</span>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        <a href="https://github.com/ori0902" class="contact-link" target="_blank">
+                            <span class="link-icon">💻</span>
+                            <span>GitHub: ori0902</span>
+                        </a>
+                        <a href="https://scholar.google.com/yourprofile" class="contact-link" target="_blank">
+                            <span class="link-icon">🎓</span>
+                            <span>Google Scholar</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="cta-box">
+                        <h3>Interested in Collaboration?</h3>
+                        <p>I'm always open to discussing research opportunities, collaborations, or industrial applications of my work in combustion modeling and machine learning.</p>
+                        <a href="mailto:your.email@lsu.edu" class="btn btn-primary">Send Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Haresh Chandrasekhar. All rights reserved.</p>
+            <p class="footer-note">Built with passion for computational science</p>
+        </div>
+    </footer>
+
+    <!-- Modals for Project Details -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProjectModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
