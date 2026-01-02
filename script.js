@@ -1,262 +1,345 @@
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+// ===================================
+// RESEARCH PORTFOLIO - INTERACTIVE JS
+// ===================================
 
-// Add scroll effect to navbar
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+// Particle Animation Background
+class ParticleBackground {
+    constructor() {
+        this.canvas = document.getElementById('particle-canvas');
+        if (!this.canvas) return;
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.mousePosition = { x: 0, y: 0 };
+        
+        this.init();
     }
-});
+    
+    init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('mousemove', (e) => {
+            this.mousePosition.x = e.clientX;
+            this.mousePosition.y = e.clientY;
+        });
+        
+        // Create particles
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 2 + 1,
+                color: Math.random() > 0.5 ? 'rgba(70, 29, 124, 0.5)' : 'rgba(253, 208, 35, 0.3)'
+            });
+        }
+        
+        this.animate();
+    }
+    
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+    
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Update and draw particles
+        this.particles.forEach((particle, i) => {
+            // Move particles
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            
+            // Boundary check
+            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+            
+            // Draw particle
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = particle.color;
+            this.ctx.fill();
+            
+            // Connect nearby particles
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[j].x - particle.x;
+                const dy = this.particles[j].y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(particle.x, particle.y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.strokeStyle = `rgba(70, 29, 124, ${0.2 * (1 - distance / 150)})`;
+                    this.ctx.lineWidth = 0.5;
+                    this.ctx.stroke();
+                }
+            }
+        });
+        
+        requestAnimationFrame(() => this.animate());
+    }
+}
 
-// Mobile menu toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
-// Smooth scrolling for navigation links
+// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        
         if (target) {
-            const headerOffset = 70;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
     });
 });
 
-// Active navigation link highlighting
-const sections = document.querySelectorAll('section[id]');
+// Navigation Background on Scroll
+const nav = document.querySelector('.nav');
+let lastScroll = 0;
 
-function highlightNavigation() {
-    const scrollY = window.pageYOffset;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
 
+// Active Navigation Link
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.section, .hero');
+
+function updateActiveLink() {
+    let current = '';
+    const scrollPos = window.pageYOffset + 100;
+    
     sections.forEach(section => {
+        const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) {
-                navLink.classList.add('active');
-            }
+        
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
         }
     });
 }
 
-window.addEventListener('scroll', highlightNavigation);
+window.addEventListener('scroll', updateActiveLink);
 
-// Intersection Observer for fade-in animations
+// Intersection Observer for Animations
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('fade-in-up');
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
-const animateElements = document.querySelectorAll('.timeline-item, .education-card, .research-card, .skill-category, .publication-item');
-animateElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(element);
+// Observe elements
+document.querySelectorAll('.project-card, .publication-card, .skill-category').forEach(el => {
+    observer.observe(el);
 });
 
-// Add smooth reveal for stat cards
-const statCards = document.querySelectorAll('.stat-card');
-statCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'scale(0.8)';
-    card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-    observer.observe(card);
-});
-
-// Counter animation for stats
-function animateCounter(element, target) {
-    let current = 0;
-    const increment = target / 50;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current);
+// Project Modal Functions
+function openProjectModal(projectId) {
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    
+    const projects = {
+        'dnk': {
+            title: 'Deep Neural Kernel Flamelet Modeling',
+            description: `
+                <h2>Revolutionary Machine Learning for Combustion</h2>
+                <p><strong>Problem:</strong> Traditional flamelet tables for turbulent combustion modeling suffer from exponentially 
+                growing memory requirements as dimensionality increases. A 4D table requires 4-7 GB, making higher-dimensional 
+                tables infeasible for practical simulations.</p>
+                
+                <h3>The Solution: Hybrid DNK Framework</h3>
+                <p>This research introduces a groundbreaking hybrid approach that combines:</p>
+                <ul>
+                    <li><strong>Deep Neural Networks:</strong> Transform control variables into optimized latent space</li>
+                    <li><strong>Kernel Regression:</strong> RBF kernels with anchor points ensure stability during time integration</li>
+                    <li><strong>SOBC Clustering:</strong> Species grouped by correlation for efficient training</li>
+                </ul>
+                
+                <h3>Key Results</h3>
+                <ul>
+                    <li>✅ <strong>99.99% memory reduction:</strong> 7 GB → 800 KB</li>
+                    <li>✅ <strong>7240× compression ratio</strong> across temperatures</li>
+                    <li>✅ <strong>High accuracy:</strong> 1.4% ignition delay error</li>
+                    <li>✅ <strong>Validated:</strong> ECN Spray A simulations (800K-1100K)</li>
+                </ul>
+                
+                <h3>Impact & Applications</h3>
+                <p>This framework enables:</p>
+                <ul>
+                    <li>High-dimensional flamelet tables (5D, 6D+) previously infeasible</li>
+                    <li>GPU acceleration for faster simulations</li>
+                    <li>Scalability to complex fuel mechanisms</li>
+                    <li>Foundation for next-generation combustion models</li>
+                </ul>
+                
+                <div class="modal-cta">
+                    <a href="https://doi.org/10.1016/j.combustflame.2025.114635" class="btn btn-primary" target="_blank">
+                        Read Full Paper in Combustion & Flame →
+                    </a>
+                </div>
+            `
+        },
+        'plasma': {
+            title: 'Plasma-Assisted Combustion Kinetics',
+            description: `
+                <h2>Non-Equilibrium Plasma Effects on Iso-Octane</h2>
+                <p><strong>Objective:</strong> Investigate plasma-assisted pyrolysis and oxidation kinetics using a 
+                custom-built plasma flow reactor to understand low-temperature chemistry enhancement.</p>
+                
+                <h3>Experimental Setup</h3>
+                <ul>
+                    <li><strong>Flow Reactor:</strong> Plasma-coupled design with nanosecond pulses</li>
+                    <li><strong>Temperature Range:</strong> 300K - 1300K (isothermal conditions)</li>
+                    <li><strong>Plasma:</strong> 20kV pulses at 0.9-3 kHz</li>
+                    <li><strong>Analysis:</strong> GC-MS with FID/TCD detection</li>
+                </ul>
+                
+                <h3>Key Findings</h3>
+                <ul>
+                    <li>✅ Enhanced fuel decomposition at T < 900K</li>
+                    <li>✅ Linear rate vs. temperature for plasma-assisted pyrolysis</li>
+                    <li>✅ Transition in reactivity mechanism at T > 550K</li>
+                    <li>✅ Formation of acetone, acetaldehyde, iso-butenal from plasma reactions</li>
+                </ul>
+                
+                <h3>Significance</h3>
+                <p>This work provides crucial experimental data for developing plasma-specific kinetic mechanisms, 
+                advancing low-temperature plasma (LTP) ignition technology for multi-mode engines.</p>
+            `
+        },
+        'tls': {
+            title: 'Two-Level Simulation for Premixed Flames',
+            description: `
+                <h2>Multi-Scale Turbulence Modeling</h2>
+                <p><strong>Goal:</strong> Assess the Two-Level Simulation (TLS) model for capturing large-scale and 
+                small-scale physics in turbulent premixed flames.</p>
+                
+                <h3>TLS Methodology</h3>
+                <ul>
+                    <li><strong>Scale Decomposition:</strong> Flow variables split into large-scale (LS) and small-scale (SS) components</li>
+                    <li><strong>3D + 1D Grid:</strong> LS solved on 3D grid, SS on embedded 1D lines</li>
+                    <li><strong>No Filtering:</strong> Unlike LES, avoids filtering challenges</li>
+                </ul>
+                
+                <h3>Validation Approach</h3>
+                <p>A priori analysis performed on turbulent premixed planar flame:</p>
+                <ul>
+                    <li>DNS dataset for validation</li>
+                    <li>Methane-air chemistry (4-step, 8-species mechanism)</li>
+                    <li>256³ grid resolution</li>
+                    <li>Progress variable tracking (c = 0.2, 0.8, 0.95)</li>
+                </ul>
+                
+                <h3>Results</h3>
+                <ul>
+                    <li>✅ <strong>High correlation:</strong> χ = 0.89-0.96 for velocity derivatives</li>
+                    <li>✅ <strong>Assumption validation:</strong> Both TLS assumptions verified</li>
+                    <li>✅ Captured SS physics: vorticity dynamics, scalar dissipation</li>
+                </ul>
+            `
         }
-    }, 30);
+    };
+    
+    if (projects[projectId]) {
+        modalBody.innerHTML = `
+            <h2 class="modal-title">${projects[projectId].title}</h2>
+            ${projects[projectId].description}
+        `;
+        modal.style.display = 'block';
+    }
 }
 
-// Trigger counter animation when stats section is visible
-const statsObserver = new IntersectionObserver(function(entries) {
+function closeProjectModal() {
+    document.getElementById('project-modal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('project-modal');
+    if (event.target == modal) {
+        closeProjectModal();
+    }
+}
+
+// Initialize particle background
+document.addEventListener('DOMContentLoaded', () => {
+    new ParticleBackground();
+    
+    // Initial active link update
+    updateActiveLink();
+});
+
+// Counter Animation
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = counter.innerText;
+        const isPercentage = target.includes('%');
+        const isMultiplier = target.includes('×');
+        const numericValue = parseFloat(target);
+        
+        let current = 0;
+        const increment = numericValue / 50;
+        const duration = 2000;
+        const stepTime = duration / 50;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= numericValue) {
+                clearInterval(timer);
+                current = numericValue;
+            }
+            
+            if (isPercentage) {
+                counter.innerText = Math.floor(current) + '%';
+            } else if (isMultiplier) {
+                counter.innerText = Math.floor(current) + '×';
+            } else {
+                counter.innerText = Math.floor(current);
+            }
+        }, stepTime);
+    });
+}
+
+// Trigger counter animation when hero is visible
+const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-card h3');
-            statNumbers.forEach(stat => {
-                const target = parseFloat(stat.textContent);
-                if (!isNaN(target)) {
-                    stat.textContent = '0';
-                    animateCounter(stat, target);
-                }
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const aboutSection = document.querySelector('.about-stats');
-if (aboutSection) {
-    statsObserver.observe(aboutSection);
-}
-
-// Typing effect for hero subtitle (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect on page load
-window.addEventListener('load', () => {
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    if (heroSubtitle) {
-        const originalText = heroSubtitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroSubtitle, originalText, 50);
-        }, 1000);
-    }
-});
-
-// Add parallax effect to hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        const parallax = scrolled * 0.5;
-        hero.style.transform = `translateY(${parallax}px)`;
-    }
-});
-
-// Copy email to clipboard functionality
-const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-emailLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        const email = link.getAttribute('href').replace('mailto:', '');
-        
-        // Only copy to clipboard, don't prevent default
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(email).then(() => {
-                // Show a temporary tooltip
-                const tooltip = document.createElement('div');
-                tooltip.textContent = 'Email copied!';
-                tooltip.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    background: var(--primary-gold);
-                    color: var(--primary-purple);
-                    padding: 15px 25px;
-                    border-radius: 5px;
-                    font-weight: 600;
-                    z-index: 10000;
-                    animation: fadeInUp 0.3s ease;
-                `;
-                document.body.appendChild(tooltip);
-                
-                setTimeout(() => {
-                    tooltip.style.opacity = '0';
-                    setTimeout(() => tooltip.remove(), 300);
-                }, 2000);
-            });
+            animateCounters();
+            heroObserver.unobserve(entry.target);
         }
     });
 });
 
-// Lazy loading for images (if you add any)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    const images = document.querySelectorAll('img[data-src]');
-    images.forEach(img => imageObserver.observe(img));
+const heroSection = document.querySelector('.hero');
+if (heroSection) {
+    heroObserver.observe(heroSection);
 }
-
-// Add hover effect to timeline items
-const timelineItems = document.querySelectorAll('.timeline-item');
-timelineItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.querySelector('.timeline-marker').style.transform = 'scale(1.5)';
-    });
-    
-    item.addEventListener('mouseleave', () => {
-        item.querySelector('.timeline-marker').style.transform = 'scale(1)';
-    });
-});
-
-// Add smooth transition to timeline markers
-const timelineMarkers = document.querySelectorAll('.timeline-marker');
-timelineMarkers.forEach(marker => {
-    marker.style.transition = 'transform 0.3s ease';
-});
-
-// Prevent default behavior for social links in development
-// Remove this in production
-document.querySelectorAll('.social-links a, .social-btn').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === 'https://linkedin.com' || href === 'https://scholar.google.com') {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('Social link clicked:', href);
-            // You can update these with your actual social media URLs
-        });
-    }
-});
-
-console.log('Portfolio loaded successfully! 🎉');

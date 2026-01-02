@@ -3,276 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haresh Chandrasekhar - Portfolio</title>
+    <title>Haresh Chandrasekhar | Computational Combustion Research</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">HC</div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
+            <div class="nav-brand">HC</div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#publications" class="nav-link">Publications</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="hero" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Haresh Chandrasekhar</h1>
-            <p class="hero-subtitle">PhD Candidate in Mechanical Engineering</p>
-            <p class="hero-description">Computational Fluid Dynamics | Machine Learning | Combustion Modeling</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="#research" class="btn btn-secondary">View Research</a>
+            <div class="hero-label">PhD Candidate • Computational Combustion</div>
+            <h1 class="hero-title">
+                Haresh<br>
+                <span class="gradient-text">Chandrasekhar</span>
+            </h1>
+            <p class="hero-subtitle">
+                Advancing combustion modeling through hybrid machine learning,<br>
+                achieving <strong>99% memory reduction</strong> in flamelet tables
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Memory Reduction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7240×</div>
+                    <div class="stat-label">Compression Ratio</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Publications</div>
+                </div>
             </div>
-            <div class="social-links">
-                <a href="mailto:hchand5@lsu.edu" target="_blank"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/ori0902" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <div class="hero-cta">
+                <a href="#research" class="btn btn-primary">Explore Research</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
             </div>
         </div>
         <div class="scroll-indicator">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll</span>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section">
+    <!-- Featured Research: DNK Framework -->
+    <section id="research" class="section featured-research">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am a Mechanical Engineer with expertise in computational fluid dynamics for reacting flows, combustion modeling, heat transfer, and multiphase thermal-fluid systems. My research focuses on developing data-driven CFD methodologies to reduce computational costs for turbulent reacting flows.</p>
-                    
-                    <p>Currently, I'm integrating machine learning frameworks (JAX, PyTorch, TensorFlow) with commercial CFD software through custom extensions, enabling faster design iterations while maintaining physics-based fidelity. I have extensive experience developing finite-volume solvers in OpenFOAM (C++) for thermal-fluid applications.</p>
-                    
-                    <p>My work has been published in leading journals like <em>Combustion and Flame</em>, and I've presented at prestigious conferences including the APS Division of Fluid Dynamics and National Combustion Meeting.</p>
+            <div class="section-header">
+                <span class="section-label">Featured Research</span>
+                <h2 class="section-title">Deep Neural Kernel Framework</h2>
+                <p class="section-subtitle">Revolutionary machine learning approach for turbulent combustion modeling</p>
+            </div>
+
+            <div class="project-showcase">
+                <div class="project-visual">
+                    <div class="image-container">
+                        <img src="memory_reduction_analysis.png" alt="99% Memory Reduction Achievement" class="project-image">
+                        <div class="image-badge">Published in Combustion & Flame</div>
+                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>4.0</h3>
-                        <p>PhD CGPA</p>
+
+                <div class="project-details">
+                    <h3>The Challenge</h3>
+                    <p class="detail-text">
+                        Traditional flamelet tables for turbulent combustion suffer from the <strong>curse of dimensionality</strong>. 
+                        Storage requirements scale exponentially with control variables, reaching <strong>7 GB</strong> for 4D tables, 
+                        making high-dimensional simulations infeasible.
+                    </p>
+
+                    <h3>The Innovation</h3>
+                    <div class="innovation-grid">
+                        <div class="innovation-card">
+                            <div class="innovation-icon">🧠</div>
+                            <h4>Deep Neural Kernel (DNK)</h4>
+                            <p>Hybrid approach combining neural networks with kernel regression for progress variable source terms</p>
+                        </div>
+                        <div class="innovation-card">
+                            <div class="innovation-icon">🎯</div>
+                            <h4>SOBC Clustering</h4>
+                            <p>Similarity-Ordinated Balanced Clustering groups correlated species for efficient training</p>
+                        </div>
+                        <div class="innovation-card">
+                            <div class="innovation-icon">⚡</div>
+                            <h4>Anchor Points</h4>
+                            <p>Strategic latent space anchors ensure stability during time integration</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>6+</h3>
-                        <p>Publications</p>
+
+                    <h3>The Impact</h3>
+                    <div class="impact-metrics">
+                        <div class="metric-card">
+                            <div class="metric-value">7 GB → 800 KB</div>
+                            <div class="metric-label">Storage Reduction</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">99.99%</div>
+                            <div class="metric-label">Memory Saved</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">7240×</div>
+                            <div class="metric-label">Compression</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1.4%</div>
+                            <div class="metric-label">Ignition Delay Error</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-code"></i>
-                        <h3>5+</h3>
-                        <p>Years Coding</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-trophy"></i>
-                        <h3>Multiple</h3>
-                        <p>Awards</p>
+
+                    <div class="project-links">
+                        <a href="https://doi.org/10.1016/j.combustflame.2025.114635" class="btn btn-primary" target="_blank">
+                            📄 Read Paper
+                        </a>
+                        <a href="#publications" class="btn btn-secondary">
+                            View All Publications
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section experience-section">
+    <!-- Research Projects Grid -->
+    <section id="projects" class="section projects-section">
         <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2022 - Present</span>
-                        <h3>Graduate Research Assistant</h3>
-                        <h4>DMO-LAB, Louisiana State University</h4>
-                        <ul>
-                            <li>Developed deep neural kernel (DNK) framework achieving 99% memory reduction in turbulent combustion simulations</li>
-                            <li>Created SOBC algorithm for optimal grouping of 29 chemical species for neural network training</li>
-                            <li>Integrated ML models with CONVERGE CFD using TensorFlow C API and custom Python UDFs</li>
-                            <li>Published first-author paper in Combustion and Flame</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2022 - Nov 2022</span>
-                        <h3>Research Assistant</h3>
-                        <h4>Center of Excellence in Applied Computational Science and Engineering</h4>
-                        <ul>
-                            <li>Assessed Two-Level Simulation modeling for compressible scalar mixing at Mach 0.7</li>
-                            <li>Implemented scale separation methodology for turbulent reacting flows</li>
-                            <li>Demonstrated TLS model capability to capture subgrid-scale physics</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Aug 2019 - Dec 2021</span>
-                        <h3>Graduate Research Assistant</h3>
-                        <h4>Combustion and Energy Research Lab, Auburn University</h4>
-                        <ul>
-                            <li>Built lab infrastructure and designed plasma-coupled flow reactor for iso-octane kinetics</li>
-                            <li>Developed 0D plasma-specific chemical kinetic solver in Fortran coupled with CHEMKIN</li>
-                            <li>Developed laminar diffusion flame solver in OpenFOAM with CRECK soot formation model</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Aug 2016 - May 2018</span>
-                        <h3>Graduate Research Assistant</h3>
-                        <h4>CFD Lab, Illinois Institute of Technology</h4>
-                        <ul>
-                            <li>Developed Nusselt number and friction factor correlations from 144 Large Eddy Simulations</li>
-                            <li>Designed genetic algorithm-based optimization framework in MATLAB</li>
-                            <li>Extended OpenFOAM solvers for porous media flow and heat transfer</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Aug 2015 - May 2016</span>
-                        <h3>CFD Engineering Intern</h3>
-                        <h4>National Aerospace Laboratories, Bangalore</h4>
-                        <ul>
-                            <li>Performed heat transfer analysis for PT-60 turboprop engines in SARAS Civil Aircraft program</li>
-                            <li>Created CAD geometry in CATIA and generated computational meshes in ICEM CFD</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="section-header">
+                <span class="section-label">Research Portfolio</span>
+                <h2 class="section-title">Key Projects</h2>
             </div>
-        </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="section education-section">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
+            <div class="projects-grid">
+                <!-- Project 1: DNK Framework -->
+                <div class="project-card featured" data-category="machine-learning">
+                    <div class="project-image-wrapper">
+                        <img src="memory_reduction_analysis.png" alt="DNK Framework">
+                        <div class="project-overlay">
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Flamelet Modeling</span>
+                        </div>
                     </div>
-                    <h3>PhD in Mechanical Engineering</h3>
-                    <h4>Louisiana State University</h4>
-                    <p class="education-location">Baton Rouge, Louisiana</p>
-                    <p class="education-date">2023 - Present</p>
-                    <p class="education-gpa">CGPA: 4.0</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>PhD in Mechanical Engineering</h3>
-                    <h4>Auburn University</h4>
-                    <p class="education-location">Auburn, Alabama</p>
-                    <p class="education-date">2019 - 2021 (Discontinued)</p>
-                    <p class="education-gpa">CGPA: 4.0</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>M.E in Mechanical and Aerospace Engineering</h3>
-                    <h4>Illinois Institute of Technology</h4>
-                    <p class="education-location">Chicago, Illinois</p>
-                    <p class="education-date">2016 - 2018</p>
-                    <p class="education-gpa">CGPA: 3.4</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>B.Tech in Aerospace Engineering</h3>
-                    <h4>SRM University</h4>
-                    <p class="education-location">Chennai, India</p>
-                    <p class="education-date">2013 - 2017</p>
-                    <p class="education-gpa">CGPA: 8.1</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Highlights Section -->
-    <section id="research" class="section research-section">
-        <div class="container">
-            <h2 class="section-title">Research Highlights</h2>
-            <div class="research-grid">
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Hybrid Neural-Kernel Modeling</h3>
-                    <p>Developed DNK framework achieving 99% memory reduction (7 GB to 800 KB) in turbulent combustion simulations while maintaining computational accuracy.</p>
-                    <div class="research-tags">
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">CFD</span>
-                        <span class="tag">Combustion</span>
+                    <div class="project-content">
+                        <h3>Deep Neural Kernel Flamelet Modeling</h3>
+                        <p>Hybrid ML framework combining neural networks with kernel regression, achieving 99% memory reduction in flamelet tables</p>
+                        <div class="project-highlights">
+                            <span class="highlight">7240× compression</span>
+                            <span class="highlight">ECN Spray A validated</span>
+                            <span class="highlight">Published C&F 2025</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('dnk')">Learn More →</button>
                     </div>
                 </div>
 
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-fire"></i>
+                <!-- Project 2: Plasma-Assisted Combustion -->
+                <div class="project-card" data-category="experimental">
+                    <div class="project-image-wrapper">
+                        <div class="placeholder-image plasma-bg"></div>
+                        <div class="project-overlay">
+                            <span class="project-tag">Plasma</span>
+                            <span class="project-tag">Kinetics</span>
+                        </div>
                     </div>
-                    <h3>Plasma-Assisted Combustion</h3>
-                    <p>Investigated non-equilibrium plasma effects on iso-octane kinetics, achieving enhanced fuel decomposition at low temperatures through plasma activation.</p>
-                    <div class="research-tags">
-                        <span class="tag">Experimental</span>
-                        <span class="tag">Kinetics</span>
-                        <span class="tag">Plasma</span>
-                    </div>
-                </div>
-
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Two-Level Simulation</h3>
-                    <p>Extended TLS framework to turbulent premixed flames, achieving 0.89-0.97 correlation coefficients for modeling assumptions validation.</p>
-                    <div class="research-tags">
-                        <span class="tag">DNS</span>
-                        <span class="tag">Turbulence</span>
-                        <span class="tag">Modeling</span>
+                    <div class="project-content">
+                        <h3>Plasma-Assisted Combustion Kinetics</h3>
+                        <p>Non-equilibrium plasma flow reactor studies of iso-octane oxidation and pyrolysis across 300K-1300K</p>
+                        <div class="project-highlights">
+                            <span class="highlight">Low-temperature chemistry</span>
+                            <span class="highlight">Nanosecond pulses</span>
+                            <span class="highlight">GC-MS Analysis</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('plasma')">Learn More →</button>
                     </div>
                 </div>
 
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-code-branch"></i>
+                <!-- Project 3: TLS Model -->
+                <div class="project-card" data-category="cfd">
+                    <div class="project-image-wrapper">
+                        <div class="placeholder-image tls-bg"></div>
+                        <div class="project-overlay">
+                            <span class="project-tag">CFD</span>
+                            <span class="project-tag">Turbulence</span>
+                        </div>
                     </div>
-                    <h3>OpenFOAM Solver Development</h3>
-                    <p>Developed custom finite-volume solvers for thermal-fluid applications, soot formation modeling, and porous media heat transfer.</p>
-                    <div class="research-tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">OpenFOAM</span>
-                        <span class="tag">HPC</span>
+                    <div class="project-content">
+                        <h3>Two-Level Simulation for Premixed Flames</h3>
+                        <p>Assessment of TLS model for capturing multi-scale turbulence-chemistry interactions in premixed combustion</p>
+                        <div class="project-highlights">
+                            <span class="highlight">Large/small scale decomposition</span>
+                            <span class="highlight">A priori analysis</span>
+                            <span class="highlight">Methane-air flames</span>
+                        </div>
+                        <button class="btn btn-text" onclick="openProjectModal('tls')">Learn More →</button>
                     </div>
                 </div>
             </div>
@@ -282,126 +219,134 @@
     <!-- Publications Section -->
     <section id="publications" class="section publications-section">
         <div class="container">
-            <h2 class="section-title">Publications & Presentations</h2>
-            
-            <div class="publications-container">
-                <div class="publication-category">
-                    <h3><i class="fas fa-book"></i> Journal Publications</h3>
-                    <div class="publication-item">
-                        <h4>A deep neural kernel approach with balanced clustering for flamelet modeling of spray flames</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, O. Owoyele</p>
-                        <p class="journal">Combustion and Flame, Volume 284, 114635, 2026</p>
+            <div class="section-header">
+                <span class="section-label">Research Output</span>
+                <h2 class="section-title">Publications</h2>
+            </div>
+
+            <div class="publications-list">
+                <!-- Publication 1 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">Combustion and Flame, 2026</div>
+                        <h3 class="pub-title">A deep neural kernel approach with balanced clustering for flamelet modeling of spray flames</h3>
+                        <p class="pub-authors"><strong>Haresh Chandrasekhar</strong>, Opeoluwa Owoyele</p>
+                        <p class="pub-abstract">
+                            This study introduces a hybrid machine learning approach combining neural networks with kernel regression 
+                            to replace high-dimensional flamelet tables, achieving substantial memory reduction while maintaining accuracy 
+                            in ECN Spray A simulations across various ambient temperatures.
+                        </p>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.1016/j.combustflame.2025.114635" class="pub-link" target="_blank">
+                                <span class="link-icon">🔗</span> DOI
+                            </a>
+                            <span class="pub-metrics">
+                                <span class="metric-item">⭐ Featured Article</span>
+                                <span class="metric-item">📊 High Impact</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="publication-category">
-                    <h3><i class="fas fa-users"></i> Conference Presentations</h3>
-                    <div class="publication-item">
-                        <h4>Hybrid Neural-Kernel Approach for Flamelet Modelling of Turbulent Combustion</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, O. Owoyele</p>
-                        <p class="conference">78th Annual Meeting of the Division of Fluid Dynamics, Houston, 2025</p>
+                <!-- Publication 2 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">12th U.S. National Combustion Meeting, 2021</div>
+                        <h3 class="pub-title">Non-Equilibrium Plasma Coupled Flow Reactor Studies of Plasma-Assisted Kinetics of Iso-Octane</h3>
+                        <p class="pub-authors"><strong>Haresh Chandrasekhar</strong>, Nicholas Tsolas</p>
+                        <p class="pub-abstract">
+                            Investigation of plasma-assisted pyrolysis and oxidation kinetics of iso-octane using a purpose-built plasma 
+                            flow reactor, demonstrating enhanced low-temperature reactivity and providing experimental database for 
+                            plasma-specific kinetic mechanism development.
+                        </p>
+                        <div class="pub-links">
+                            <span class="pub-metrics">
+                                <span class="metric-item">🔬 Experimental Study</span>
+                                <span class="metric-item">🌡️ 300K-1300K Range</span>
+                            </span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="publication-item">
-                        <h4>A Hybrid Machine Learning Approach for Flamelet Modelling of Turbulent Reacting Flows</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, O. Owoyele</p>
-                        <p class="conference">77th Annual Meeting of the Division of Fluid Dynamics, Utah, 2024</p>
-                    </div>
-
-                    <div class="publication-item">
-                        <h4>A Priori Analysis of a Hybrid Machine Learning Approach to Flamelet Modeling in Turbulent Reacting Flows</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, O. Owoyele</p>
-                        <p class="conference">14th National Combustion Meeting, Boston, 2025</p>
-                    </div>
-
-                    <div class="publication-item">
-                        <h4>An Experimental and Numerical Study on Sooting Tendencies of IBE/Surrogate Diesel Blends</h4>
-                        <p class="authors">A. Singh, <strong>H. Chandrasekhar</strong>, N. Tsolas</p>
-                        <p class="conference">12th National Combustion Meeting, Texas A&M, 2021</p>
-                    </div>
-
-                    <div class="publication-item">
-                        <h4>Non-Equilibrium Plasma Coupled Flow Reactor Studies of Iso-Octane</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, N. Tsolas</p>
-                        <p class="conference">12th National Combustion Meeting, Texas A&M, 2021</p>
-                    </div>
-
-                    <div class="publication-item">
-                        <h4>Assessment of Two-Level Simulation Model for Compressible Turbulent Scalar Mixing</h4>
-                        <p class="authors"><strong>H. Chandrasekhar</strong>, R. Ranjan, S. Menon</p>
-                        <p class="conference">17th International Workshop on Physics of Compressible Turbulent Mixing, Atlanta, 2022</p>
+                <!-- Publication 3 -->
+                <div class="publication-card">
+                    <div class="pub-icon">📄</div>
+                    <div class="pub-content">
+                        <div class="pub-venue">AIAA Aviation Forum, 2020</div>
+                        <h3 class="pub-title">On the Assessment of Two-Level Simulation Model for Numerical Investigation of Turbulent Premixed Flames</h3>
+                        <p class="pub-authors"><strong>H. Chandrasekhar</strong>, R. Ranjan</p>
+                        <p class="pub-abstract">
+                            A priori assessment of the TLS model for turbulent premixed combustion, demonstrating the model's 
+                            capability to capture small-scale physics while reducing computational costs through simplified 
+                            one-dimensional SS equations.
+                        </p>
+                        <div class="pub-links">
+                            <span class="pub-metrics">
+                                <span class="metric-item">💨 Turbulent Combustion</span>
+                                <span class="metric-item">🔢 Multi-scale Modeling</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
+    <!-- Skills & Tools -->
+    <section class="section skills-section">
         <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="section-header">
+                <span class="section-label">Expertise</span>
+                <h2 class="section-title">Skills & Tools</h2>
+            </div>
+
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> CFD & Simulation</h3>
+                    <h3>Machine Learning</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">OpenFOAM</span>
-                        <span class="skill-tag">CONVERGE</span>
-                        <span class="skill-tag">ANSYS Fluent</span>
-                        <span class="skill-tag">CHEMKIN</span>
-                        <span class="skill-tag">Cantera</span>
+                        <span class="skill-tag">Deep Neural Networks</span>
+                        <span class="skill-tag">Kernel Methods</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">JAX</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Clustering Algorithms</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <h3>Computational Methods</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OpenFOAM</span>
+                        <span class="skill-tag">CONVERGE CFD</span>
+                        <span class="skill-tag">FlameMaster</span>
+                        <span class="skill-tag">RANS/LES</span>
+                        <span class="skill-tag">DNS</span>
+                        <span class="skill-tag">Flamelet Models</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Fortran</span>
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">Bash</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i> Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">JAX</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-cube"></i> CAD & Meshing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">CATIA</span>
-                        <span class="skill-tag">SolidWorks</span>
-                        <span class="skill-tag">ICEM CFD</span>
-                        <span class="skill-tag">Pointwise</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> HPC & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">SLURM</span>
-                        <span class="skill-tag">MPI</span>
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">MPI/OpenMP</span>
                         <span class="skill-tag">Git</span>
-                        <span class="skill-tag">LaTeX</span>
+                        <span class="skill-tag">HPC</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-chart-bar"></i> Data Analysis</h3>
+                    <h3>Research Areas</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">ParaView</span>
-                        <span class="skill-tag">Tecplot</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Turbulent Combustion</span>
+                        <span class="skill-tag">Chemical Kinetics</span>
+                        <span class="skill-tag">Plasma-Assisted Combustion</span>
+                        <span class="skill-tag">Spray Modeling</span>
+                        <span class="skill-tag">Data-Driven Modeling</span>
                     </div>
                 </div>
             </div>
@@ -411,41 +356,42 @@
     <!-- Contact Section -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>I'm always interested in discussing research collaborations, opportunities, or just chatting about CFD and machine learning!</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <a href="mailto:hchand5@lsu.edu">hchand5@lsu.edu</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <a href="tel:+13345521513">+1 334-552-1513</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Baton Rouge, Louisiana</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="section-header">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
 
-                    <div class="contact-social">
-                        <a href="mailto:hchand5@lsu.edu" class="social-btn"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/ori0902" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://scholar.google.com" target="_blank" class="social-btn"><i class="fas fa-graduation-cap"></i></a>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Haresh Chandrasekhar</h3>
+                    <p class="contact-position">PhD Candidate in Mechanical Engineering</p>
+                    <p class="contact-university">Louisiana State University</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:your.email@lsu.edu" class="contact-link">
+                            <span class="link-icon">📧</span>
+                            <span>your.email@lsu.edu</span>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+                            <span class="link-icon">💼</span>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        <a href="https://github.com/ori0902" class="contact-link" target="_blank">
+                            <span class="link-icon">💻</span>
+                            <span>GitHub: ori0902</span>
+                        </a>
+                        <a href="https://scholar.google.com/yourprofile" class="contact-link" target="_blank">
+                            <span class="link-icon">🎓</span>
+                            <span>Google Scholar</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="cta-box">
+                        <h3>Interested in Collaboration?</h3>
+                        <p>I'm always open to discussing research opportunities, collaborations, or industrial applications of my work in combustion modeling and machine learning.</p>
+                        <a href="mailto:your.email@lsu.edu" class="btn btn-primary">Send Email</a>
                     </div>
                 </div>
             </div>
@@ -455,10 +401,18 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Haresh Chandrasekhar. All rights reserved.</p>
-            <p>PhD Candidate in Mechanical Engineering | Louisiana State University</p>
+            <p>&copy; 2026 Haresh Chandrasekhar. All rights reserved.</p>
+            <p class="footer-note">Built with passion for computational science</p>
         </div>
     </footer>
+
+    <!-- Modals for Project Details -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProjectModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
