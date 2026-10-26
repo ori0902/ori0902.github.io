@@ -17,6 +17,7 @@
             <ul class="nav-menu">
                 <li><a href="#hero" class="nav-link">Home</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#ongoing" class="nav-link">Ongoing Work</a></li>
                 <li><a href="#publications" class="nav-link">Publications</a></li>
                 <li><a href="#conferences" class="nav-link">Conferences</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -120,6 +121,105 @@
                     <div id="soot-details" class="research-details">
                         <p class="research-narrative">Co-authored 12th U.S. National Combustion Meeting (sooting tendencies, alternative fuels).</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ongoing Work Section -->
+    <section id="ongoing" class="section ongoing-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ongoing Work</h2>
+                <p class="section-subtitle">Current projects in progress. Code is kept in private repositories and is available on request.</p>
+            </div>
+
+            <div class="research-list">
+                <!-- Ongoing 1: Loss landscape study -->
+                <div class="research-item">
+                    <span class="wip-badge">In progress</span>
+                    <h3>Slope Training vs. Kernel Heads in Neural Surrogates: A Loss-Landscape Study</h3>
+                    <div class="research-meta">Louisiana State University • 2026</div>
+                    <p class="research-summary">
+                        A controlled ablation of what actually makes the deep neural kernel work. Four training configurations for the UFPV source term ω̇ (inputs χ, C, Z̃″², Z̃) were compared on the same MLP backbone across five architectures and two χ ranges. The study measured off-grid generalization, training convergence and loss-landscape geometry.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <div class="stat-value">17–30×</div>
+                            <div class="stat-label">lower training loss with the kernel head vs. the Adam baseline</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">+14–31%</div>
+                            <div class="stat-label">off-grid accuracy added by the kernel head at every architecture</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">≤ +6%</div>
+                            <div class="stat-label">added by trainable activation slopes alone</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">90.8% → 14.8%</div>
+                            <div class="stat-label">Levenberg–Marquardt accuracy (within 10%) as depth increases</div>
+                        </div>
+                    </div>
+
+                    <button class="btn-text" onclick="toggleDetails('landscape')">Read more →</button>
+
+                    <div id="landscape-details" class="research-details">
+                        <p class="research-narrative"><strong>Configurations.</strong> A0: Adam with fixed sigmoid slopes (baseline). A1: Adam with trainable per-neuron activation slopes. A2: A1 plus an RBF kernel regression head on the learned features (the deep neural kernel). LM: Levenberg–Marquardt as a second-order reference.</p>
+                        <ul class="finding-list">
+                            <li><strong>The kernel head wins off-grid.</strong> A2 has the best off-grid accuracy at every architecture for χ ≤ 24, at both error tolerances. It is the only first-order method that stays competitive across all architectures and both χ ranges.</li>
+                            <li><strong>The kernel head is the causal component.</strong> At χ ≤ 4 on the wide, shallow network it adds +62% off-grid accuracy, while trainable slopes add +4%.</li>
+                            <li><strong>Slopes alone can hurt.</strong> On the deep, narrow 4 × 15 network, A1 falls below the baseline (41.1% vs. 44.4% within 10%). The 2D loss contours show it stopping on a saddle point rather than a minimum. The kernel head recovers the loss (+31%).</li>
+                            <li><strong>Loss geometry.</strong> On wide networks all three methods converge to a convex basin. A2's basin sits about one decade below A1's and two below A0's, and its loss surface curves in every direction, while A0 and A1 have flat or symmetric directions. On narrow networks A2 develops sub-basins, since the network is too narrow to spread the kernel anchors.</li>
+                            <li><strong>Second-order training does not scale with depth.</strong> LM reaches 90.8% within 10% on the wide, shallow network, then drops to 40.1% and 14.8% as depth increases.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="skill-tag">JAX</span>
+                            <span class="skill-tag">Kernel Methods</span>
+                            <span class="skill-tag">Loss Landscapes</span>
+                            <span class="skill-tag">Second-Order Optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 2: Construction-avoiding table compression -->
+                <div class="research-item">
+                    <span class="wip-badge">In progress</span>
+                    <h3>Construction-Avoiding Compression of Flamelet Tables</h3>
+                    <div class="research-meta">Louisiana State University • 2026</div>
+                    <p class="research-summary">
+                        Building compressed UFPV tables directly from presumed-PDF convolutions, without ever constructing the full table. The number of table entries grows exponentially with the number of control variables, and each entry costs a convolution, so generating the full table is often the real bottleneck. This project evaluates only the entries a compressed representation actually needs.
+                    </p>
+
+                    <button class="btn-text" onclick="toggleDetails('sparsegrid')">Read more →</button>
+
+                    <div id="sparsegrid-details" class="research-details">
+                        <ul class="finding-list">
+                            <li><strong>Adaptive sparse grids.</strong> Locally adaptive hierarchical grids, one per species, refined by hierarchical surplus to a set error tolerance. Points concentrate near ignition fronts and steep gradients in progress variable instead of filling smooth regions.</li>
+                            <li><strong>Phase 1: compress an existing table.</strong> A proof of concept on a 29-species n-dodecane UFPV table, validated against every node of the full table, including a check that mass fractions sum to one.</li>
+                            <li><strong>Phase 2: build without the table.</strong> The grid queries the convolution routine directly, so building it needs only the points it requests. The full table is computed only to measure error.</li>
+                            <li><strong>Tensor-train cross approximation.</strong> A second route to the same goal. It samples entries chosen by the algorithm, and the number of samples scales with the tensor ranks rather than the full grid size. It is validated on source-term error and on ignition delay obtained by integrating the progress variable.</li>
+                            <li><strong>Why it matters.</strong> Avoiding the full tensor product makes it practical to add table dimensions, such as pressure, heat loss and more χ levels, for LES of spray and engine combustion.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="skill-tag">Sparse Grids</span>
+                            <span class="skill-tag">Tasmanian</span>
+                            <span class="skill-tag">Tensor Trains</span>
+                            <span class="skill-tag">UFPV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 3: Early-stage ideas -->
+                <div class="research-item">
+                    <span class="wip-badge wip-badge-idea">Early stage</span>
+                    <h3>Next Directions</h3>
+                    <ul class="finding-list">
+                        <li><strong>UFPV in the Pele suite.</strong> Bringing the UFPV surrogate into a high-speed reacting-flow solver, motivated by recent work on tabulated manifolds for supersonic combustion.</li>
+                        <li><strong>RL-guided point selection.</strong> Replacing the hierarchical-surplus criterion of the adaptive sparse grid with a learned policy. The policy picks the next convolution based on the surrogate's local uncertainty and on how sensitive the downstream physics is to that region.</li>
+                        <li><strong>Last-layer training with species clustering.</strong> Test cases extending the clustered species networks.</li>
+                    </ul>
                 </div>
             </div>
         </div>
