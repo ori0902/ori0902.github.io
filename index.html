@@ -18,6 +18,7 @@
                 <li><a href="#hero" class="nav-link">Home</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
                 <li><a href="#ongoing" class="nav-link">Ongoing Work</a></li>
+                <li><a href="#projects" class="nav-link">Personal Projects</a></li>
                 <li><a href="#publications" class="nav-link">Publications</a></li>
                 <li><a href="#conferences" class="nav-link">Conferences</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -163,6 +164,17 @@
                         </div>
                     </div>
 
+                    <div class="figure-grid">
+                        <figure class="result-figure">
+                            <img src="assets/img/offgrid_accuracy.webp" alt="Bar charts of off-grid agreement with the table interpolator, within 1% and within 10%, for A0, A1 and A2 across five architectures at chi up to 24. A2 is highest at every architecture." loading="lazy">
+                            <figcaption>Off-grid agreement with the table interpolator (χ ≤ 24). The kernel head (A2, green) is the most accurate at every architecture.</figcaption>
+                        </figure>
+                        <figure class="result-figure">
+                            <img src="assets/img/loss_landscape_2d.webp" alt="2D loss landscapes in the top two Hessian eigenvector directions for A0, A1 and A2 on the arch_W2 network. A0 has a flat direction, A1 an elongated valley, and A2 a minimum curved in both directions." loading="lazy">
+                            <figcaption>2D loss landscape along the top two Hessian eigenvectors (arch_W2). A0 has a flat direction and A1 a long valley; A2's minimum is curved in both directions.</figcaption>
+                        </figure>
+                    </div>
+
                     <button class="btn-text" onclick="toggleDetails('landscape')">Read more →</button>
 
                     <div id="landscape-details" class="research-details">
@@ -220,6 +232,108 @@
                         <li><strong>RL-guided point selection.</strong> Replacing the hierarchical-surplus criterion of the adaptive sparse grid with a learned policy. The policy picks the next convolution based on the surrogate's local uncertainty and on how sensitive the downstream physics is to that region.</li>
                         <li><strong>Last-layer training with species clustering.</strong> Test cases extending the clustered species networks.</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Projects Section -->
+    <section id="projects" class="section projects-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Personal Projects</h2>
+                <p class="section-subtitle">Side projects outside my main research, exploring optimization, LLM agents and scientific software.</p>
+            </div>
+
+            <div class="research-list">
+                <!-- Personal 1: Cantera multi-agent LLM tool -->
+                <div class="research-item">
+                    <span class="wip-badge wip-badge-done">Completed</span>
+                    <h3>Cantera Pilot: A Multi-Agent LLM Interface for Combustion Simulations</h3>
+                    <div class="research-meta">Final project, CSC 7644: Applied LLM Development • LSU • 2026</div>
+                    <p class="research-summary">
+                        Ask a combustion question in plain English, for example "ignition delay of H₂/air at φ = 0.5, 1200 K, 10 atm", and get a computed, interpreted answer. A four-stage LLM pipeline plans the simulation, writes Cantera code, runs it in a sandbox, checks that the result is physically plausible and explains it. No knowledge of the Cantera API is needed.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">simulation types: adiabatic flame temperature, ignition delay, laminar flame speed</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">pipeline stages: planner, code generation, execution with validation, analysis</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Local</div>
+                            <div class="stat-label">runs fully offline on an open model (Llama 3.1 8B via Ollama), with no API keys</div>
+                        </div>
+                    </div>
+
+                    <button class="btn-text" onclick="toggleDetails('cantera')">Read more →</button>
+
+                    <div id="cantera-details" class="research-details">
+                        <ul class="finding-list">
+                            <li><strong>Deterministic normalization.</strong> Fuel names, oxidizer shorthands, equivalence-ratio aliases and units are resolved in plain Python rather than by the LLM, including picking the right reaction mechanism for heavier fuels.</li>
+                            <li><strong>Retrieval-augmented code generation.</strong> Relevant Cantera documentation and hand-verified reference scripts are retrieved from a ChromaDB index and given to the code-generation agent.</li>
+                            <li><strong>Self-correcting execution.</strong> Generated code runs in a sandbox with an import allowlist and a timeout. If it fails, or the result violates physical plausibility bounds, the traceback or hint is fed back for up to three attempts.</li>
+                            <li><strong>Silent-error checks.</strong> The plausibility validators catch order-of-magnitude mistakes, such as the wrong equilibrium mode or a unit mix-up, that would otherwise look like valid answers.</li>
+                            <li><strong>Full audit trail.</strong> Every run saves its spec, each generated script and any errors, for debugging and evaluation.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="skill-tag">LLM Agents</span>
+                            <span class="skill-tag">RAG</span>
+                            <span class="skill-tag">Cantera</span>
+                            <span class="skill-tag">Ollama</span>
+                            <span class="skill-tag">ChromaDB</span>
+                            <span class="skill-tag">Pydantic</span>
+                        </div>
+                        <div class="research-link">
+                            <a href="https://github.com/ori0902/cantera-pilot" target="_blank">View on GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal 2: CubeSat thermal placement GA -->
+                <div class="research-item">
+                    <span class="wip-badge">In progress</span>
+                    <h3>Thermal-Aware Component Placement for CubeSats Using a Genetic Algorithm</h3>
+                    <div class="research-meta">Personal project • 2026</div>
+                    <p class="research-summary">
+                        Optimizing where electronics are mounted inside a 1U CubeSat so that every component stays within its temperature limit over a full orbit. Built on a lumped-parameter (nodal) thermal model of the FUNcube-1 satellite, coupled to an orbital heating model.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">components placed: battery, OBC, EPS, comms, payload, ADCS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">45</div>
+                            <div class="stat-label">candidate locations (5 PCBs × 9 nodes)</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">~8.3 × 10⁹</div>
+                            <div class="stat-label">possible layouts, far too many to enumerate</div>
+                        </div>
+                    </div>
+
+                    <button class="btn-text" onclick="toggleDetails('thermalga')">Read more →</button>
+
+                    <div id="thermalga-details" class="research-details">
+                        <ul class="finding-list">
+                            <li><strong>Thermal model.</strong> Each internal PCB is discretized as a 3 × 3 node grid (center, mid-edges and corners). The corners conduct heat through aluminium spacers to the structure, and neighbouring boards exchange heat by radiation. The outer panels carry solar cells and receive orbital heat loads (~600 km orbit, β = 30°), solved over two orbits.</li>
+                            <li><strong>Objective.</strong> Minimize the worst-case limit violation, max over components of (T<sub>peak</sub> − T<sub>limit</sub>). A negative value means every component stays within its limit. Limits range from 30 °C for the battery to 80 °C for the comms board.</li>
+                            <li><strong>Genetic algorithm.</strong> Tournament selection, uniform crossover, per-component mutation and elitism. Early stopping triggers when the best fitness plateaus. Fitness evaluations are cached so no layout is ever solved twice.</li>
+                            <li><strong>Baseline.</strong> The original FUNcube layout, with each component at the center of its board, is seeded into the initial population, so the GA's improvement over it is measured directly.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="skill-tag">Genetic Algorithms</span>
+                            <span class="skill-tag">Spacecraft Thermal Analysis</span>
+                            <span class="skill-tag">Nodal Thermal Modeling</span>
+                            <span class="skill-tag">Python</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

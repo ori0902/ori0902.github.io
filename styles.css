@@ -555,6 +555,43 @@ a {
     color: var(--text-muted);
 }
 
+.wip-badge-done {
+    border-color: var(--lsu-purple);
+    color: #B38CF0;
+}
+
+.projects-section {
+    background: var(--bg-dark);
+}
+
+.figure-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.result-figure {
+    margin: 0;
+}
+
+.result-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+}
+
+.result-figure figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
