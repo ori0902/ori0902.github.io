@@ -300,39 +300,12 @@
                     <h3>Thermal-Aware Component Placement for CubeSats Using a Genetic Algorithm</h3>
                     <div class="research-meta">Personal project • 2026</div>
                     <p class="research-summary">
-                        Optimizing where electronics are mounted inside a 1U CubeSat so that every component stays within its temperature limit over a full orbit. Built on a lumped-parameter (nodal) thermal model of the FUNcube-1 satellite, coupled to an orbital heating model.
+                        Using a genetic algorithm to decide where electronics are mounted inside a CubeSat so that every component stays within its temperature limit over a full orbit. The optimizer is coupled to a nodal thermal model of the FUNcube-1 satellite with orbital heating.
                     </p>
-
-                    <div class="stat-grid">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">components placed: battery, OBC, EPS, comms, payload, ADCS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">45</div>
-                            <div class="stat-label">candidate locations (5 PCBs × 9 nodes)</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">~8.3 × 10⁹</div>
-                            <div class="stat-label">possible layouts, far too many to enumerate</div>
-                        </div>
-                    </div>
-
-                    <button class="btn-text" onclick="toggleDetails('thermalga')">Read more →</button>
-
-                    <div id="thermalga-details" class="research-details">
-                        <ul class="finding-list">
-                            <li><strong>Thermal model.</strong> Each internal PCB is discretized as a 3 × 3 node grid (center, mid-edges and corners). The corners conduct heat through aluminium spacers to the structure, and neighbouring boards exchange heat by radiation. The outer panels carry solar cells and receive orbital heat loads (~600 km orbit, β = 30°), solved over two orbits.</li>
-                            <li><strong>Objective.</strong> Minimize the worst-case limit violation, max over components of (T<sub>peak</sub> − T<sub>limit</sub>). A negative value means every component stays within its limit. Limits range from 30 °C for the battery to 80 °C for the comms board.</li>
-                            <li><strong>Genetic algorithm.</strong> Tournament selection, uniform crossover, per-component mutation and elitism. Early stopping triggers when the best fitness plateaus. Fitness evaluations are cached so no layout is ever solved twice.</li>
-                            <li><strong>Baseline.</strong> The original FUNcube layout, with each component at the center of its board, is seeded into the initial population, so the GA's improvement over it is measured directly.</li>
-                        </ul>
-                        <div class="tag-row">
-                            <span class="skill-tag">Genetic Algorithms</span>
-                            <span class="skill-tag">Spacecraft Thermal Analysis</span>
-                            <span class="skill-tag">Nodal Thermal Modeling</span>
-                            <span class="skill-tag">Python</span>
-                        </div>
+                    <div class="tag-row">
+                        <span class="skill-tag">Genetic Algorithms</span>
+                        <span class="skill-tag">Spacecraft Thermal Analysis</span>
+                        <span class="skill-tag">Python</span>
                     </div>
                 </div>
             </div>
@@ -348,6 +321,18 @@
             </div>
 
             <div class="publications-list">
+                <div class="publication-card">
+                    <div class="pub-venue">Combustion and Flame • 2026</div>
+                    <h3 class="pub-title">A liquid-fueled reactor network model for enhanced NOx prediction in gas turbine combustors</h3>
+                    <p class="pub-authors">Philip John, <strong>Haresh Chandrasekhar</strong>, Sourav Saha, Opeoluwa Owoyele</p>
+                    <p class="pub-abstract">
+                        Liquid-fueled reactor network (LFRN) for reduced-order modeling of gas turbine combustors, adding reactors for spray breakup, droplet heating and evaporation. Validated against CFD of a liquid-fueled can combustor, it substantially reduces NOx error compared with gaseous reactor networks while keeping outlet temperatures accurate, and runs in O(10 s) on a single CPU core, over 1,000× faster than CFD.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2510.13033" class="pub-link" target="_blank">Preprint: arXiv 2510.13033</a>
+                    </div>
+                </div>
+
                 <div class="publication-card">
                     <div class="pub-venue">Combustion and Flame • 2026 • Volume 284</div>
                     <h3 class="pub-title">A deep neural kernel approach with balanced clustering for flamelet modeling of spray flames</h3>
